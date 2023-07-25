@@ -1,0 +1,54 @@
+version: "3.5"
+
+volumes:
+    mariadb_vol:
+        
+    wordpress_vol:
+
+networks:
+  inception_netw:
+    driver: bridge
+
+services:
+  nginx:
+    depends_on:
+      - wordpress
+    container_name: cont_nginx
+    build: ./requirements/nginx
+    networks:
+      - inception_netw
+    ports:
+      - 443:443
+
+  mariadb:
+    container_name: cont_mariadb
+    volumes:
+      - mariadb_vol:/home/kmendes-/data
+    build: ./requirements/mariadb
+    networks:
+      - inception_netw
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: todo
+      MYSQL_DATABASE: todo
+      MYSQL_USER: todo
+      MYSQL_USER_PASSWORD: todo
+
+
+  wordpress:
+    depends_on:
+      - mariadb
+    container_name: cont_wordpress
+    volumes:
+      - wordpress_vol:/home/kmendes-/data
+    build: ./requirements/wordpress
+    networks:
+      - inception_netw
+    ports:
+      - 9000:9000
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: db_user
+      
+      

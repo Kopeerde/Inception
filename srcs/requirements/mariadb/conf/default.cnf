@@ -1,0 +1,11 @@
+
+[server]
+
+[client-server]
+
+# Passed to all MariaDB clients.
+[client]
+
+# MariaDB server
+[mysqld]
+
