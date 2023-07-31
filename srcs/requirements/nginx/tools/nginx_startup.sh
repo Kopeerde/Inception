@@ -3,7 +3,7 @@
 echo "Starting nginx web server engine proxy and openssl."
 
 # -f meaning file, -d for directories
-if [ ! -f "/etc/ssl/certs/nginx.crt" || ! -f "/etc/ssl/private/nginx.key" ]; then
+if [[ ! -f "/etc/ssl/certs/nginx.crt" || ! -f "/etc/ssl/private/nginx.key" ]]; then
 
 	echo "Generating private and public SSL keys."
 
