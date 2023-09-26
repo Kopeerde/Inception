@@ -1,9 +1,9 @@
 FROM alpine:3.17.3
 
 RUN apk update
-RUN apk add php-fpm
+RUN apk add php php-phar php-fpm php-mysqli
 
-COPY ./tools /var/www
+COPY ./tools /var/www/
 
 RUN chmod +x /var/www/wordpress.sh
 
@@ -11,4 +11,4 @@ EXPOSE 9000
 
 ENTRYPOINT ["/var/www/wordpress.sh"]
 
-CMD ["", ""]
+CMD ["/usr/sbin/php8.1-fpm", "--nodaemonize"]

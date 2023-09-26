@@ -19,6 +19,8 @@ services:
       - inception_netw
     ports:
       - 443:443
+    env_file:
+      - .env
 
   mariadb:
     container_name: cont_mariadb
@@ -29,11 +31,8 @@ services:
       - inception_netw
     ports:
       - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: todo
-      MYSQL_DATABASE: todo
-      MYSQL_USER: todo
-      MYSQL_USER_PASSWORD: todo
+    env_file:
+      - .env
 
 
   wordpress:
@@ -47,8 +46,10 @@ services:
       - inception_netw
     ports:
       - 9000:9000
+    env_file:
+      - .env
     environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: db_user
+      MYSQL_USER: kmendes-
+      MYSQL_PASSWORD: qwertyuiop
       
       
