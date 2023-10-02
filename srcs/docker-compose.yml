@@ -13,7 +13,9 @@ services:
   nginx:
     depends_on:
       - wordpress
-    container_name: cont_nginx
+    volumes:
+      - wordpress_vol:/home/kmendes-/data
+    container_name: nginx
     build: ./requirements/nginx
     networks:
       - inception_netw
@@ -23,7 +25,7 @@ services:
       - .env
 
   mariadb:
-    container_name: cont_mariadb
+    container_name: mariadb
     volumes:
       - mariadb_vol:/home/kmendes-/data
     build: ./requirements/mariadb
@@ -38,7 +40,7 @@ services:
   wordpress:
     depends_on:
       - mariadb
-    container_name: cont_wordpress
+    container_name: wordpress
     volumes:
       - wordpress_vol:/home/kmendes-/data
     build: ./requirements/wordpress
