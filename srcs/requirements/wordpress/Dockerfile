@@ -1,7 +1,7 @@
-FROM alpine:3.17.3
+FROM debian:buster
 
-RUN apk update
-RUN apk add php php-phar php-fpm php-mysqli
+RUN apt-get update
+RUN apt-get install php8.1 php-phar php-fpm php-mysqli
 
 COPY ./tools /var/www/
 
