@@ -1,31 +1,16 @@
-FROM alpine:3.17.3
+FROM debian:bullseye
 
-RUN apk update
-RUN apk add mariadb mariadb-client
-
-
-
-RUN mkdir /var/run/mysqld; \
-    chmod 777 /var/run/mysqld; \
-    { echo '[mysqld]'; \
-      echo 'skip-host-cache'; \
-      echo 'skip-name-resolve'; \
-      echo 'bind-address=0.0.0.0'; \
-    } | tee  /etc/my.cnf.d/docker.cnf; \
-    sed -i "s|skip-networking|skip-networking=0|g" \
-      /etc/my.cnf.d/mariadb-server.cnf
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
+RUN apt-get update
+RUN apt-get install -y mariadb-server
 
 EXPOSE 3306
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
-COPY ./tools/mariadb_startup.sh /var/www/
+COPY ./tools/mariadb_startup.sql /var/www/
 
-RUN sh /var/www/mariadb_startup.sh && rm -f /var/www/mariadb_startup.sh
+RUN service mariadb start && mariadb < /var/www/mariadb_startup.sql && rm -f /var/www/mariadb_startup.sql
 
 #HEALTHCHECK --interval=5m --timeout=30s --start-period=5s --retries=3 \
 #    CMD mariadb -e 'SELECT @@datadir;' || exit 1
-
-USER mysql
 
 CMD ["mysqld"]

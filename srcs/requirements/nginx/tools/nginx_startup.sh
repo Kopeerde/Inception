@@ -7,7 +7,7 @@ if [[ ! -f "/etc/ssl/certs/nginx.crt" || ! -f "/etc/ssl/private/nginx.key" ]]; t
 
 	echo "Generating private and public SSL keys."
 
-	openssl req -new -newkey rsa:2048 -nodes \
+	openssl req -new -x509 -newkey rsa:2048 -nodes \
 		-keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt \
 		-subj "/C=FR/ST=Paris/L=Paris/CN=www.kmendes-.42.fr"
 

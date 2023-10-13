@@ -1,7 +1,7 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update
-RUN apt-get -y install wget php7.3 php-phar php-fpm php-mysqli
+RUN apt-get -y install wget php7.4 php-phar php-fpm php-mysqli
 
 COPY ./tools /var/www/
 
@@ -11,4 +11,4 @@ EXPOSE 9000
 
 ENTRYPOINT ["/var/www/wordpress.sh"]
 
-CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm7.4", "--nodaemonize"]

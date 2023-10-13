@@ -1,12 +1,12 @@
-FROM alpine:3.17.3
+FROM debian:bullseye
 
-RUN apk update
-RUN apk add nginx openssl
+RUN apt-get update
+RUN apt-get install -y curl nginx openssl
 
 EXPOSE 443
 
-COPY ./conf/nginx.conf /etc/nginx/sites-enables/default
-COPY ./tools/nginx_startup.sh /var/www/nginx_startup.sh
+COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./tools/nginx_startup.sh /var/www
 
 RUN chmod +x /var/www/nginx_startup.sh
 
