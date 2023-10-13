@@ -3,6 +3,7 @@ FROM debian:bullseye
 RUN apt-get update
 RUN apt-get -y install wget php7.4 php-phar php-fpm php-mysqli
 
+COPY ./conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./tools /var/www/
 
 RUN chmod +x /var/www/wordpress.sh
