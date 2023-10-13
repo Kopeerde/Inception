@@ -7,8 +7,10 @@ chown -R www-data:www-data /var/www/*;
 chown -R 775 /var/www/*;
 mkdir -p /run/php/;
 touch /run/php/php7.4-fpm.pid;
+mv /var/www/html/wp-config.php /var/www/wp-config.php
 
 if [ ! -f /var/www/html/wp-config.php ]; then
+	echo "test entering if wordpress.sh"
 	mkdir -p /var/www/html
 	cd /usr/local/bin
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;

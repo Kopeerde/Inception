@@ -15,7 +15,7 @@ clean:
 
 fclean:
 	cd ./srcs && docker-compose down
-	docker volume rm mariadb_vol wordpress_vol
+	docker volume rm -f srcs_mariadb_vol srcs_wordpress_vol
 
 re: fclean $(NAME)
 	
