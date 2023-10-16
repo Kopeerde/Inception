@@ -7,7 +7,7 @@ volumes:
       driver_opts:
         type: none
         o: bind
-        device: /home/kmendes-/data/
+        device: /home/kmendes-/data/mysql
         
     wordpress_vol:
       driver: local
@@ -15,7 +15,7 @@ volumes:
       driver_opts:
         type: none
         o: bind
-        device: /home/kmendes-/data/
+        device: /home/kmendes-/data/wordpress
 
 networks:
   inception_netw:
@@ -39,7 +39,7 @@ services:
   mariadb:
     container_name: mariadb
     volumes:
-      - mariadb_vol:/home/kmendes-/data
+      - mariadb_vol:/var/lib/mysql
     build: ./requirements/mariadb
     networks:
       - inception_netw
