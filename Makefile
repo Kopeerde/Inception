@@ -15,8 +15,9 @@ clean:
 	
 
 fclean:
+	docker system prune -f -a --all
 	cd ./srcs && docker-compose down
-	docker volume rm -f srcs_mariadb_vol srcs_wordpress_vol
+	docker volume rm -f mariadb_vol wordpress_vol
 
 re: fclean $(NAME)
 	

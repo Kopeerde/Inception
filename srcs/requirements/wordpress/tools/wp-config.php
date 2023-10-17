@@ -18,6 +18,9 @@
  * @package WordPress
  */
 
+define( 'WP_HOME', 'http://kmendes-.42.fr' );
+define( 'WP_SITEURL', 'http://kmendes-.42.fr' );
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'wordpress' );
@@ -80,10 +83,9 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 
-
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', '/var/www/html/wordpress' );
+	define( 'ABSPATH', '/var/www/html' );
 }
 
 /** Sets up WordPress vars and included files. */
