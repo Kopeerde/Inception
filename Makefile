@@ -7,8 +7,7 @@ $(NAME): all
 	
 
 all:
-	cd ./srcs && docker-compose build --no-cache && \
-	docker-compose up --force-recreate --build
+	cd ./srcs && docker-compose up
 
 clean:
 	cd ./srcs && docker-compose stop
